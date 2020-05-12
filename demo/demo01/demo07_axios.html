@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+		<script type="text/javascript" src="js/axios.min.js"></script>
+		
+		<!--解决闪烁问题-->
+		<style>
+			[v-clock]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="vue" v-clock>
+			<div>{{info.name}}</div>
+			<div>{{info.address.city}}</div>
+			<a v-bind:href="info.url">点击</a>
+		</div>
+		
+	</body>
+	<script>
+	 
+		var vm = new Vue({
+			el: "#vue",
+			data: {},//属性 vue
+			data(){ //方法 
+				return{
+					//请求的返回参数类型，必须和json字符串一样
+					info:{
+						name: null,
+						url: null,
+						address:{
+							street:null,
+							city:null,
+							country:null
+						}
+					}
+				}
+			},
+			mounted(){//钩子函数    链式编程  				es6新特性
+				axios.get('data.json').then(response => (this.info = response.data ))
+			}
+		});
+		
+	</script>
+</html>

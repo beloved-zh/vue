@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<school v-for="item,index in schoolList" :key="index" :change-event="changeEvent" :school-name="item" :index="index"></school>
+			<h1>选择的学校是：{{chooseScholr}}</h1>
+		</div>
+		
+		
+		<script type="text/javascript">
+			Vue.component('school',{
+				props:['schoolName','index','changeEvent'],
+				template:'<ul><li><h3>学校名称：{{index}}-----{{schoolName}}</h3><button @click="chooseScholr(schoolName)">选择学校</button></li></ul>',
+				methods:{
+					chooseScholr:function(schoolName){
+						this.changeEvent(schoolName)
+					}
+				}		  
+			})
+			
+			var app = new Vue({
+				el:"#app",
+				data:{
+					schoolList:['清华','北大','交大','浙大'],
+					chooseScholr:""
+				},
+				methods:{
+					changeEvent:function(data){
+						this.chooseScholr = data
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

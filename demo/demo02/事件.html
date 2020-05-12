@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.wai{
+				width: 200px;
+				height: 200px;
+				border: 1px solid #000000;
+			}
+			.nei{
+				
+				width: 100px;
+				height: 100px;
+				border: 1px solid #000000;
+			}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h1>点击次数：{{count}}</h1>
+			<!-- 可以直接使用表达式完成操作 -->
+			<button type="button" @click="count++">点击</button>
+			<button type="button" @click="clickEvent($event)">点击2，传入事件对象</button>
+			
+			<!--事件修饰符-->
+			<!-- .stop阻止冒泡事件向上传递 -->
+			<div class="wai" @click="wai">
+				<div class="nei" @click.stop="nei">
+				</div>
+			</div>
+			
+			<!-- .prevent阻止表单提交 -->
+			<form action="" method="post">
+				<!-- @keyup.enter按键修饰符，监听enter -->
+				<input type="text" name="" id="" value=""  @keyup.enter="form" />
+				<input type="submit" @click.prevent="form" value="提交"/>
+			</form>
+			
+			<!-- .once只触发一次 -->
+			<button type="button" @click.once="once">只触发一次</button>
+			
+			<!-- 系统修饰键 -->
+			<!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+			<button v-on:click.ctrl="xt1()">即使 Alt 或 Shift 被一同按下时也会触发</button>
+			
+			<!-- 有且只有 Ctrl 被按下的时候才触发 -->
+			<button v-on:click.ctrl.exact="xt2()">有且只有 Ctrl 被按下的时候才触发</button>
+			
+			<!-- 没有任何系统修饰符被按下的时候才触发 -->
+			<button v-on:click.exact="xt3()">没有任何系统修饰符被按下的时候才触发</button>
+			
+			<!-- 鼠标 -->
+			<button @click.right="right">鼠标右击</button>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					count:0
+				},
+				methods:{
+					clickEvent:function(e){
+						console.log(e)
+					},
+					wai:function(){
+						console.log("点击外部div")
+					},
+					nei:function(){
+						console.log("点击内部div")
+					},
+					form:function(){
+						console.log("阻止了表单提交")
+					},
+					once:function(){
+						console.log("只会触发一次")
+					},
+					xt1:function(){
+						console.log('即使 Alt 或 Shift 被一同按下时也会触发')
+					},
+					xt2:function(){
+						console.log('有且只有 Ctrl 被按下的时候才触发')
+					},
+					xt3:function(){
+						console.log('没有任何系统修饰符被按下的时候才触发')
+					},
+					right:function(){
+						console.log("鼠标右击了")
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

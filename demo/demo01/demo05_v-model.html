@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+<!--
+	双向绑定
+-->
+	<body>
+		<!--view层 模板-->
+		<div id="app">
+			输入文本:<input type="text" v-on:keyup="sayHi" v-model="value" />{{value}}
+
+
+			<!--单选-->
+			<p>
+				性别：
+				<input type="radio" name="sex" value="男" v-model="sex" />男
+				<input type="radio" name="sex" value="女" v-model="sex" />女
+				&emsp;选中了：{{sex}}
+			</p>
+			
+			<!--
+				下拉框
+				使用了v-model双向绑定，初始值未匹配任何选项，
+				<select>元素被渲染成为选中状态
+			-->
+			下拉框：
+			<select v-model="selected">
+				<option value="" disabled>请选择</option>
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			选中了：{{selected}}
+		</div>
+	</body>
+	<!--导入vue.js-->
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script>
+		//创建vue对象
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				value: "",
+				sex: "",
+				selected: ""
+			},
+			methods: { //方法必须定义在vue的methods中
+				sayHi: function() {
+					console.log(this.value)
+				}
+			}
+		});
+	</script>
+
+</html>

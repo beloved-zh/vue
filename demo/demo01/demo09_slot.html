@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--view层 模板-->
+		<div id="app">
+			<!--
+				v-bind 简写  ：
+				v-on:click   @click
+			-->
+			<todo>
+				<todo_title slot="todo_title" :title="title"></todo_title>
+				<todo_items slot="todo_items" v-for="(item,index) in todoItems"
+					 :item="item" :index="index" v-on:remove="removeItem(index)"></todo_items>
+			</todo>
+		</div>
+		
+	</body>
+	<!--导入vue.js-->
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script>
+		
+		//slot插槽
+		Vue.component("todo",{
+			template : '<div>'+
+							'<slot name="todo_title"></slot>'+
+							'<ul>'+
+								'<slot name="todo_items"></slot>'+
+							'</ul>'+
+					   '</div>'
+		});
+		 
+		Vue.component("todo_title",{
+			props: ['title'],
+			template : '<div>{{title}}</div>'
+		});
+		
+		Vue.component("todo_items",{
+			props: ['item','index'],
+			//只能绑定当前组件的方法
+			template : '<li>{{index}}&emsp;{{item}} <button @click="remove">删除</button></li>',
+			methods: {
+				remove: function(index){
+					//this.$emit自定义事件	自定义事件名   值
+					this.$emit('remove',index);
+				}
+			}
+		});
+		
+		
+		//创建vue对象
+		var vm = new Vue({
+			el:"#app",
+			data: {
+				title: "课程列表",
+				todoItems: ['JAVA','Html','Css','Js']
+			},
+			methods: {
+				removeItem: function(index){
+					console.log("删除了"+this.todoItems[index]+"元素");
+					this.todoItems.splice(index,1);//一次删除一个元素
+				}
+			}
+		});
+		
+	</script>
+</html>

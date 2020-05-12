@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--view层 模板-->
+		<div id="app">
+			{{message}}
+		</div>
+		
+	</body>
+	<!--导入vue.js-->
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script>
+		//创建vue对象
+		var vm = new Vue({
+			el:"#app",
+			//Model 数据vm
+			data:{
+				message:"hello,vue!"
+			}
+		});
+		
+	</script>
+</html>

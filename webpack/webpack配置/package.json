@@ -1,0 +1,15 @@
+{
+  "name": "webpack_config",
+  "version": "1.0.0",
+  "description": "webpack如何配置",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "张恒",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.6.0"
+  }
+}

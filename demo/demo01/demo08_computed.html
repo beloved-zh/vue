@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="app">
+			<p>方法 {{currentTime()}}</p> 
+			<p>计算属性 {{currentTime2}}</p> 
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				message: "hello"
+			},
+			methods:{
+				currentTime: function(){
+					return Date.now(); //返回当前时间戳
+				}
+			},
+			/*
+			 *	调用方法时，每次都需要计算
+			 *  结果不是经常变化的，可以存在计算属性，结果时缓存起来的
+			 *  计算属性中的值发生改变，才会刷新缓存的值 ，可以在控制台改变message的值查看变化
+			 * 
+			 * */
+			computed:{//计算属性 methods computed 方法名不能重名，重名之后只会调用methods方法
+				currentTime2: function(){
+					this.message;
+					return Date.now(); //返回当前时间戳
+				}
+			}
+		});
+	</script>
+</html>

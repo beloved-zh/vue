@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--view层 模板-->
+		<div id="app">
+			<!--
+				使用zhangheng自定义组件
+				遍历items的数据
+				v-bind将遍历得到的值，绑定给组件中的values
+				values将值赋给模板
+			-->
+			<zhangheng v-for="item in items" v-bind:values="item"></zhangheng>
+		</div>
+		
+	</body>
+	<!--导入vue.js-->
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script>
+
+		//定义一个Vue组件的    组件名  自定义合法标签
+		Vue.component("zhangheng",{
+			//props 接收参数
+			props: ['values'],
+			//template 模板
+			template: '<li>{{values}}</li>'
+		});
+		
+		var vm = new Vue({
+			el:"#app",
+			data: {
+				items: [
+					"Java","mysql","html","vue"
+				]
+			}
+		});
+		
+	</script>
+</html>

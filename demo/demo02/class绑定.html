@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.page{
+				width: 200px;
+				height: 200px;
+				margin-top: 50px;
+				background-color: antiquewhite;
+			}
+			.active{
+				background-color: aqua;
+			}
+		</style>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 通过对象的方式决定是否存在某个类 -->
+			<div class="page" :class="{active:isTrue}"></div>
+			<!-- 直接放置对象 -->
+			<div class="page" :class="styleObj"></div>
+			<!-- 放置数组 -->
+			<div class="page" :class="styleArr"></div>
+			<!-- 放置字符串 -->
+			<div class="page" :class="styleStr"></div>
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					isTrue:true,
+					// 如果有-需要用引号
+					styleObj:{active:true,"col-lg-6":true},
+					styleArr:['active','col-lg-6'],
+					styleStr:"active col-lg-6"
+				}
+			})
+		</script>
+	</body>
+</html>

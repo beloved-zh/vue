@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{username}}</h2>
+			<h1>单行文本输入框</h1>
+			<!-- .lazy失去焦点，值才会改变 -->
+			<!-- .trim自动去除首尾空格 -->
+			<input type="text" name="username" v-model.lazy.trim="username" value="" />
+			<h1>多行文本输入框</h1>
+			<textarea v-model="username"></textarea>
+			
+			<h1>复选框：选择喜欢的水果</h1>
+			<span v-for="item in fruits">
+				{{item}}
+				<input type="checkbox" name="fruits" v-model="checkFruits" :value="item" />
+			</span>
+			<h2>{{checkFruits}}</h2>
+			
+			<h1>单选框：选择最喜欢的水果</h1>
+			<span v-for="item in fruits">
+				{{item}}
+				<input type="radio" name="Rfruits" v-model="radioFruits" :value="item" />
+			</span>
+			<h2>{{radioFruits}}</h2>
+			
+			<h1>下拉框：选择你居住的城市</h1>
+			<select v-model="chooseCity">
+				<option value ="">请选择</option>
+				<option v-for="item in citys" :value="item">{{item}}</option>
+			</select>
+			<h2>{{chooseCity}}</h1>
+			
+			<h1>多选下拉框：选择你居住的城市</h1>
+			<select v-model="moreCity" multiple="multiple">
+				<option v-for="item in citys" :value="item">{{item}}</option>
+			</select>
+			<h2>{{moreCity}}</h1>
+			
+			<h1>使用修饰符，将字符串变为数字</h1>
+			<input type="text" name="age" v-model.number="age" value="" />
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					username:"Beloved",
+					fruits:["🍎","🍌","🍇",'🥝'],
+					checkFruits:[],
+					radioFruits:"",
+					citys:['上海','北京','西安','重庆'],
+					chooseCity:"",
+					moreCity:[],
+					age:18
+				},
+				watch:{
+					age:function(val){
+						console.log(val)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

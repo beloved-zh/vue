@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<h1>{{msg}}</h1>
+			<ul>
+				<li v-for="item in arr">{{item}}</li>
+			</ul>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					msg:"hello Vue",
+					arr: ['小明','小红','小王']
+				},
+				//简单数据修改
+				watch:{
+					msg:function(val){
+						console.log("msg----------监听器出发了")
+						console.log(val)
+					},
+					arr:function(val){
+						console.log("arr----------监听器出发了")
+						console.log(val)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

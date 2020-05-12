@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<hello-com v-if="isShow"></hello-com>
+		</div>
+		
+		
+		<script type="text/javascript">
+			let helloCom = Vue.component("hello-com",{
+				template:"<h1>{{name}}</h1>",
+				data:function(){
+					return{
+						name:"张三"
+					}
+				},
+				beforeCreate() {
+					console.log("在实例初始化之后")
+					//此时数据data和事件方法methods还未绑定在app对象上
+				},
+				created() {
+					console.log("在实例初始化之后")
+					//数据data和事件方法methods绑定在app对象上
+				},
+				beforeMount() {
+					console.log("在挂载开始之前被调用：相关的 render 函数首次被调用。")
+					//渲染之前，根据数据生成的DOM对象是获取不到的
+				},
+				mounted() {
+					console.log("实例被挂载后调用")
+					//渲染之后，可以获取数据生成的DOM对象
+				},
+				beforeUpdate() {
+					console.log("数据更新时调用")
+					//数据更改，但内容未更改之前
+				},
+				updated() {
+					console.log("数据更新之后调用")
+					//内容已更新完毕
+				},
+				beforeDestroy() {
+					console.log("实例销毁之前调用。")
+				},
+				destroyed() {
+					console.log("实例销毁后调用。")
+				}
+			})
+			
+			var app = new Vue({
+				el:"#app",
+				data:{
+					isShow:true
+				},
+				components:{
+					"hello-com":helloCom
+				}
+				
+			})
+		</script>
+		
+	</body>
+</html>

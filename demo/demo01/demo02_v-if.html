@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--view层 模板-->
+		<div id="app">
+			
+			<h1 v-if="type==='A'">优秀</h1>
+			<h1 v-else-if="type==='B'">良好</h1>
+			<h1 v-else-if="type==='C'">一般</h1>
+			<h1 v-else>差</h1>
+			
+		</div>
+		
+	</body>
+	<!--导入vue.js-->
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script>
+		//创建vue对象
+		var vm = new Vue({
+			el:"#app",
+			data: {
+				type: 'A'
+			}
+		});
+		
+	</script>
+</html>

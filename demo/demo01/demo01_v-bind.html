@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<!--view层 模板-->
+		<div id="app">
+			<!--
+				v-bind：绑定参数指令
+				指令带有前缀v-，vue提供的特殊特性
+			-->
+			<span v-bind:title="message">
+				悬停提示
+			</span>
+		</div>
+		
+	</body>
+	<!--导入vue.js-->
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script>
+		//创建vue对象
+		var vm = new Vue({
+			el:"#app",
+			//Model 数据vm
+			data:{
+				message:"hello,vue!"
+			}
+		});
+		
+	</script>
+</html>
