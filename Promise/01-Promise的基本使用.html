@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    
+
+    <script>
+        // 1.使用setTimeout
+        // setTimeout(() => {
+        //     console.log('Hello World')
+        // },1000)
+
+
+        // 参数 -> 函数(resolve,reject)
+        // resolve,reject本身也是函数
+        new Promise((resolve,reject) => {
+            setTimeout(() => {
+                // 成功的时候调用
+                resolve('Hello World')
+
+                // 失败的时候调用
+                reject('我是错误信息')
+            }, 1000);
+        }).then((data) => {
+            console.log(data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    </script>
+</body>
+</html>
